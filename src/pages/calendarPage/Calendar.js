@@ -8,6 +8,7 @@ import moment from "moment";
 const Calendar = () => {
   // useState를 사용하여 달 단위로 변경
   const [getMoment, setMoment] = useState(moment());
+  console.log(getMoment);
 
   const today = getMoment;
 
@@ -26,6 +27,7 @@ const Calendar = () => {
   const calendarArr = () => {
     let result = [];
     let week = firstWeek;
+
     for (week; week <= lastWeek; week++) {
       result = result.concat(
         <tr key={week}>
@@ -38,12 +40,18 @@ const Calendar = () => {
                 .week(week)
                 .startOf("week")
                 .add(index, "day");
-              console.log("data:" + data);
-              console.log("index:" + index);
+
+              //   console.log("data:" + data);
+              //   console.log("index:" + index);
+              //   console.log(moment().format("YYYY.MM"));
 
               if (moment().format("YYYYMMDD") === days.format("YYYYMMDD")) {
                 return (
-                  <td key={index} className="today">
+                  <td
+                    key={index}
+                    className="today"
+                    onClick={() => console.log(days.format("YYYYMMDD"))}
+                  >
                     <div className="circle">
                       <span>{days.format("D")}</span>
                     </div>
@@ -57,7 +65,10 @@ const Calendar = () => {
                 );
               } else {
                 return (
-                  <td key={index}>
+                  <td
+                    key={index}
+                    onClick={() => console.log(days.format("YYYYMMDD"))}
+                  >
                     <span>{days.format("D")}</span>
                   </td>
                 );
@@ -91,15 +102,23 @@ const Calendar = () => {
         >
           <img className="arrow" src={right} alt="right" />
         </button>
+
+        <button
+          className="thisMonthButton"
+          onClick={() => {
+            setMoment(moment());
+          }}
+        >
+          이번달
+        </button>
       </div>
 
       <div className="buttongroup">
-        <button className="categorybutton">today</button>
-        <button className="categorybutton">방송</button>
-        <button className="categorybutton">발매</button>
-        <button className="categorybutton">구매</button>
-        <button className="categorybutton">축하</button>
-        <button className="categorybutton">행사</button>
+        <button className="categoryButton">방송</button>
+        <button className="categoryButton">발매</button>
+        <button className="categoryButton">구매</button>
+        <button className="categoryButton">축하</button>
+        <button className="categoryButton">행사</button>
       </div>
 
       <table>
