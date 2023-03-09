@@ -86,10 +86,10 @@ const Calendar = () => {
   };
 
   return (
-    <div className="container">
-      <div className="control">
+    <div className="calendar-container">
+      <div className="control-container">
         <button
-          className="button"
+          className="prev-btn"
           onClick={() => {
             // clone() 은 기존의 moment가 아닌 새로운 객체를 반환했다는 의미
             setMoment(getMoment.clone().subtract(1, "month"));
@@ -98,18 +98,16 @@ const Calendar = () => {
           <FontAwesomeIcon icon={faChevronLeft} size="lg" />
         </button>
         <span className="title">{today.format("YYYY.MM")}</span>
-
         <button
-          className="button"
+          className="next-btn"
           onClick={() => {
             setMoment(getMoment.clone().add(1, "month"));
           }}
         >
           <FontAwesomeIcon icon={faChevronRight} size="lg" />
         </button>
-
         <button
-          className="thisMonthButton"
+          className="today-btn"
           onClick={() => {
             setMoment(moment());
           }}
@@ -118,13 +116,13 @@ const Calendar = () => {
         </button>
       </div>
 
-      <div className="buttonGroup">
-        <button className="categoryButton">방송</button>
-        <button className="categoryButton">발매</button>
-        <button className="categoryButton">구매</button>
-        <button className="categoryButton">축하</button>
-        <button className="categoryButton">행사</button>
-        <button className="categoryButton">
+      <div className="category-container">
+        <button className="category-btn">방송</button>
+        <button className="category-btn">발매</button>
+        <button className="category-btn">구매</button>
+        <button className="category-btn">축하</button>
+        <button className="category-btn">행사</button>
+        <button className="category-btn">
           <FontAwesomeIcon icon={faUser} />
         </button>
       </div>
@@ -132,13 +130,13 @@ const Calendar = () => {
       <table>
         <tbody>
           <tr>
-            <td className="weekTitle">일</td>
-            <td className="weekTitle">월</td>
-            <td className="weekTitle">화</td>
-            <td className="weekTitle">수</td>
-            <td className="weekTitle">목</td>
-            <td className="weekTitle">금</td>
-            <td className="weekTitle">토</td>
+            <td className="week">일</td>
+            <td className="week">월</td>
+            <td className="week">화</td>
+            <td className="week">수</td>
+            <td className="week">목</td>
+            <td className="week">금</td>
+            <td className="week">토</td>
           </tr>
           {calendarArr()}
         </tbody>
