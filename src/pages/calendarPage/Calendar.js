@@ -94,7 +94,7 @@ const Calendar = () => {
       </div>
 
       <div className="buttongroup">
-        <button className="categorybutton">오늘</button>
+        <button className="categorybutton">today</button>
         <button className="categorybutton">방송</button>
         <button className="categorybutton">발매</button>
         <button className="categorybutton">구매</button>
