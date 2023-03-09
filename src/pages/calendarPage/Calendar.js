@@ -1,14 +1,19 @@
 import "./Calendar.css";
-import left from "../../Img/left.png";
-import right from "../../Img/right.png";
 
 import { useState } from "react";
 import moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faRotateRight,
+  faChevronRight,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Calendar = () => {
   // useState를 사용하여 달 단위로 변경
   const [getMoment, setMoment] = useState(moment());
-  console.log(getMoment);
+  //   console.log(getMoment);
 
   const today = getMoment;
 
@@ -90,7 +95,7 @@ const Calendar = () => {
             setMoment(getMoment.clone().subtract(1, "month"));
           }}
         >
-          <img className="arrow" src={left} alt="left" />
+          <FontAwesomeIcon icon={faChevronLeft} size="lg" />
         </button>
         <span className="title">{today.format("YYYY.MM")}</span>
 
@@ -100,7 +105,7 @@ const Calendar = () => {
             setMoment(getMoment.clone().add(1, "month"));
           }}
         >
-          <img className="arrow" src={right} alt="right" />
+          <FontAwesomeIcon icon={faChevronRight} size="lg" />
         </button>
 
         <button
@@ -109,16 +114,19 @@ const Calendar = () => {
             setMoment(moment());
           }}
         >
-          이번달
+          <FontAwesomeIcon icon={faRotateRight} />
         </button>
       </div>
 
-      <div className="buttongroup">
+      <div className="buttonGroup">
         <button className="categoryButton">방송</button>
         <button className="categoryButton">발매</button>
         <button className="categoryButton">구매</button>
         <button className="categoryButton">축하</button>
         <button className="categoryButton">행사</button>
+        <button className="categoryButton">
+          <FontAwesomeIcon icon={faUser} />
+        </button>
       </div>
 
       <table>
