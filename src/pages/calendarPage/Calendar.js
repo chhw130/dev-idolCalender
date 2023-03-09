@@ -1,4 +1,5 @@
 import "./Calendar.css";
+import test_data from "./data.json";
 
 import { useState } from "react";
 import moment from "moment";
@@ -59,6 +60,7 @@ const Calendar = () => {
                   >
                     <div className="circle">
                       <span>{days.format("D")}</span>
+                      <Show_event days={days} />
                     </div>
                   </td>
                 );
@@ -73,8 +75,10 @@ const Calendar = () => {
                   <td
                     key={index}
                     onClick={() => console.log(days.format("YYYYMMDD"))}
+                    className="day"
                   >
                     <span>{days.format("D")}</span>
+                    <Show_event days={days} />
                   </td>
                 );
               }
@@ -145,3 +149,23 @@ const Calendar = () => {
   );
 };
 export default Calendar;
+
+function Show_event({ days }) {
+  return (
+    <>
+      {test_data.work.map((v, i) => {
+        if (days.format("YYYYMMDD") == moment(v.start).format("YYYYMMDD")) {
+          return (
+            <div
+              key={i}
+              onClick={() => console.log(v)}
+              className="calendar_body_days_event"
+            >
+              {v.data}
+            </div>
+          );
+        }
+      })}
+    </>
+  );
+}
