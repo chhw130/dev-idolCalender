@@ -8,6 +8,9 @@ import MainPage from "./pages/mainPage/MainPage";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "./store/auth";
 import { useEffect } from "react";
+import Calendar from "./pages/calendarPage/Calendar";
+
+/**커밋!! */
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +40,8 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           {/* 개인정보수정 */}
           <Route path="/edituser" element={<EditUser />} />
+
+          <Route path="/calendar" element={<Calendar />} />
 
           <Route
             path="/report"
