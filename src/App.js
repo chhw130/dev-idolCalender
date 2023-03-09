@@ -8,6 +8,7 @@ import MainPage from "./pages/mainPage/MainPage";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "./store/auth";
 import { useEffect } from "react";
+import Calendar from "./pages/calendarPage/Calendar";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ function App() {
           {/* <Modal>
           <ReportSchedule />
           </Modal> */}
+          <Route path="/calendar" element={<Calendar />} />
         </Routes>
       </BrowserRouter>
     </>
