@@ -153,15 +153,12 @@ export default Calendar;
 function Show_event({ days }) {
   return (
     <>
-      {test_data.work.map((v, i) => {
-        if (days.format("YYYYMMDD") == moment(v.start).format("YYYYMMDD")) {
+      {test_data.event.map((data, i) => {
+        // console.log(data, i);
+        if (days.format("YYYYMMDD") == moment(data.date).format("YYYYMMDD")) {
           return (
-            <div
-              key={i}
-              onClick={() => console.log(v)}
-              className="calendar_body_days_event"
-            >
-              {v.data}
+            <div key={i} onClick={() => console.log(data)} className="event">
+              {data.content}
             </div>
           );
         }
