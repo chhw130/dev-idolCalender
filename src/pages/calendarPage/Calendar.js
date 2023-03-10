@@ -9,6 +9,11 @@ import {
   faRotateRight,
   faChevronRight,
   faChevronLeft,
+  faBroadcastTower,
+  faCompactDisc,
+  faStore,
+  faGift,
+  faCalendarCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Calendar = () => {
@@ -51,6 +56,7 @@ const Calendar = () => {
               //   console.log("index:" + index);
               //   console.log(moment().format("YYYY.MM"));
 
+              // 오늘 날짜 원으로 표시
               if (moment().format("YYYYMMDD") === days.format("YYYYMMDD")) {
                 return (
                   <td
@@ -58,12 +64,15 @@ const Calendar = () => {
                     className="today"
                     onClick={() => console.log(days.format("YYYYMMDD"))}
                   >
-                    <div className="circle">
-                      <span>{days.format("D")}</span>
+                    {/* <div className="today"> */}
+                    <span>{days.format("D")}</span>
+                    <div className="event-content">
                       <Show_event days={days} />
                     </div>
+                    {/* </div> */}
                   </td>
                 );
+                // 다른 달은 글씨 색 연하게
               } else if (days.format("MM") !== today.format("MM")) {
                 return (
                   <td key={index} style={{ color: "#c2c2c2" }}>
@@ -78,7 +87,9 @@ const Calendar = () => {
                     className="day"
                   >
                     <span>{days.format("D")}</span>
-                    <Show_event days={days} />
+                    <div className="event-content">
+                      <Show_event days={days} />
+                    </div>
                   </td>
                 );
               }
@@ -121,13 +132,23 @@ const Calendar = () => {
       </div>
 
       <div className="category-container">
-        <button className="category-btn">방송</button>
-        <button className="category-btn">발매</button>
-        <button className="category-btn">구매</button>
-        <button className="category-btn">축하</button>
-        <button className="category-btn">행사</button>
         <button className="category-btn">
-          <FontAwesomeIcon icon={faUser} />
+          <FontAwesomeIcon icon={faBroadcastTower} size="sm" /> 방송
+        </button>
+        <button className="category-btn">
+          <FontAwesomeIcon icon={faCompactDisc} size="sm" /> 발매
+        </button>
+        <button className="category-btn">
+          <FontAwesomeIcon icon={faStore} size="sm" /> 구매
+        </button>
+        <button className="category-btn">
+          <FontAwesomeIcon icon={faGift} size="sm" /> 축하
+        </button>
+        <button className="category-btn">
+          <FontAwesomeIcon icon={faCalendarCheck} size="sm" /> 행사
+        </button>
+        <button className="category-btn">
+          <FontAwesomeIcon icon={faUser} size="sm" /> my
         </button>
       </div>
 
