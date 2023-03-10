@@ -17,6 +17,20 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Calendar = () => {
+  let [clicked, setClicked] = useState("");
+
+  const toggleActive = (e) => {
+    setClicked((prev) => {
+      return e.target.value;
+    });
+  };
+
+  // const toggleActive = (e) => {
+  //   setBtnActive((prev) => {
+  //     return e.target.value;
+  //   });
+  // };
+
   // useState를 사용하여 달 단위로 변경
   const [getMoment, setMoment] = useState(moment());
   //   console.log(getMoment);
@@ -62,7 +76,11 @@ const Calendar = () => {
                   <td
                     key={index}
                     className="today"
-                    onClick={() => console.log(days.format("YYYYMMDD"))}
+                    onClick={() =>
+                      console.log(
+                        days.format("M") + "월" + " " + days.format("D") + "일"
+                      )
+                    }
                   >
                     {/* <div className="today"> */}
                     <span>{days.format("D")}</span>
@@ -83,10 +101,19 @@ const Calendar = () => {
                 return (
                   <td
                     key={index}
-                    onClick={() => console.log(days.format("YYYYMMDD"))}
-                    className="day"
+                    onClick={() =>
+                      console.log(
+                        days.format("M") + "월" + " " + days.format("D") + "일"
+                      )
+                    }
                   >
-                    <span>{days.format("D")}</span>
+                    <span
+                      value={index}
+                      className={"click" + (index == clicked ? "active" : "")}
+                      onClick={toggleActive}
+                    >
+                      {days.format("D")}
+                    </span>
                     <div className="event-content">
                       <Show_event days={days} />
                     </div>

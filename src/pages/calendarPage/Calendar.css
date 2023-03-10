@@ -36,6 +36,14 @@
     z-index: 2;
 }
 
+.click{
+    color:black;
+}
+
+.click.active{
+    color: blue;
+}
+
 /* .calendar-container .circle {
     background-color: black;
     width: 2.5vw;
@@ -132,7 +140,7 @@
 
 .calendar-container td {
     /*display:flex;*/
-    border:1px solid gray;
+    /* border:1px solid gray; */
     width:8rem;
     height:4rem;
     margin: auto;
