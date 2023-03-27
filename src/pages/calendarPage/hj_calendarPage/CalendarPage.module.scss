@@ -5,6 +5,26 @@
   align-items: center;
   justify-content: center;
 }
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  transform: translateY(0);
+}
+
+.box.animated {
+  animation: example 1s linear;
+}
+
+@keyframes example {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(200px);
+  }
+}
+
 .calendar {
   width: 90vw;
   display: flex;

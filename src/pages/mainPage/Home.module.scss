@@ -18,37 +18,27 @@ p {
   position: sticky;
   top: 0;
 }
+
+/* width : total number of slides (9) * individual slide width (250px) */
 .slider {
-  // height: 100px;
-  /* margin: auto; */
-  /* position: relative; */
+  //border: 1px solid black;
   width: 100vw;
   display: flex;
   overflow: hidden;
   background-color: white;
-  padding: 40px 0px;
+  padding: 20px 0px;
 }
 
-/* width : total number of slides (9) * individual slide width (250px) */
 .slideBox {
   display: flex;
-  width: calc(300px * 10);
-  //width: 100vw;
-  animation: scroll 15s linear infinite;
+  width: calc(
+    300px * 10
+  ); // width : total number of slides (10) * individual slide width (300px)
   &:hover {
     animation-play-state: paused;
   }
 }
 
-/* width: moves the slide track leftwards (-250px) by half (18 images/2 =9) of its width */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-300px * 5));
-  }
-}
 .slide {
   height: 150px;
   width: 300px;
@@ -56,7 +46,7 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* padding: 15px; */
+  margin-right: 20px; // Add margin to create a gap between divs
   perspective: 100px;
 }
 
@@ -68,11 +58,16 @@ p {
   width: 280px;
   transition: transform 0.5s;
   border-radius: 10px;
-  box-shadow: 5.1px 6.1px 21px 0 rgb(0 0 0 / 13%);
+  box-shadow: 5.1px 6.1px 17px 0 rgba(0, 0, 0, 0.13);
   cursor: pointer;
   &:hover {
     transform: translateZ(7px);
   }
+}
+
+.slideContent {
+  padding: 20px;
+  font-size: 0.9rem;
 }
 
 .slideBot {
@@ -80,16 +75,14 @@ p {
   justify-content: flex-end;
   padding-top: 30px;
 }
-.slideContent {
-  padding: 20px;
-  font-size: 0.9rem;
-}
+
 .contentTitle {
   margin-left: 10px;
 }
 .nameTitle {
   margin-left: 10px;
 }
+
 // change
 
 /* artistSection */
@@ -126,7 +119,6 @@ article {
   object-fit: cover;
   object-position: center;
   cursor: pointer;
-  box-shadow: 4px 4px 5px 0 rgb(0 0 0 / 20%);
 }
 .artistThumnail {
   cursor: pointer;
@@ -155,7 +147,7 @@ article {
   margin: 0;
   padding-top: 20px;
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: 1rem;
   letter-spacing: -0.19px;
   cursor: pointer;
   //border: 1px solid black;
@@ -169,11 +161,12 @@ article {
   color: #888888;
 }
 .mainTitle {
+  margin-top: 4vh;
   p {
     font-family: Cafe24Ssurround;
     font-size: 3.5vw;
     text-align: center;
-    line-height: 5vh;
+    line-height: 2.5vh;
     letter-spacing: -1.55px;
   }
 }
@@ -182,13 +175,16 @@ article {
   font-size: 2vw;
   letter-spacing: -0.6px;
   color: #888888;
-  line-height: 1.67;
+  line-height: 3vw;
 }
 
 @media (max-width: 768px) {
-  .mainTitle {
-    line-height: 2vh;
-  }
+  // .mainTitle {
+  //   p {
+  //     font-size: 3.5vw;
+  //     line-height: 2vh;
+  //   }
+  // }
   .subTitle {
     margin-top: 2.5vw;
   }
@@ -207,10 +203,12 @@ article {
     width: 22vw;
   } */
   .artistName {
-    font-size: 2.5vw;
+    padding: 0;
+    margin-top: 1vh;
+    font-size: 2.2vw;
   }
   .artistFont {
-    font-size: 2.5vw;
+    font-size: 2.2vw;
   }
   article {
     width: 70vw;
@@ -221,7 +219,7 @@ article {
   // 아티스트 썸네일 박스
   .artistThumnail {
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
   .artistImageWrapper {
     width: 100%;
@@ -248,6 +246,8 @@ article {
     margin-top: 2.5vw;
   }
   .artistName {
+    padding: 0;
+    margin-top: 1vh;
     font-size: 3vw;
   }
   .artistFont {

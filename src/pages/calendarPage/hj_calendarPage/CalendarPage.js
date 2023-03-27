@@ -25,13 +25,18 @@ const CalendarData = () => {
   const [reportModal, setReportModal] = useState(false);
   const [idolName, setIdolName] = useState({});
 
-  // 아이돌 데이터들
+  // 아이돌 데이터
   const { isLoding: idDataLoding, data: idData } = useQuery(
     ["info", idolId],
     () => {
       return axiosSchedule(idolId);
     }
   );
+
+  // 스케줄 데이터
+  // const { isLoding: schedulesLoding, data: schedulesData } = useQuery(
+  //   "schedules",
+  // );
 
   useEffect(() => {
     axiosIdolSchedule(idolId).then((res) => {
@@ -92,16 +97,42 @@ const CalendarData = () => {
 
   /**사이드바 */
   const [sidebar, setSidebar] = useState(false);
-  /**아이돌 day 스케줄데이터와 유저 스케줄데이터 */
-  const [selectedDate, setSelectedDate] = useState(0);
+
+  /**아이돌 day데이터 */
   const [newIdolDateSchedule, setNewIdolDateSchedule] = useState([]);
+
+  const [prevIdolDateSchedule, setPrevIdolDateSchedule] = useState([]);
+  const [nextIdolDateSchedule, setNextIdolDateSchedule] = useState([]);
+
+  const [selectedDate, setSelectedDate] = useState(0);
   const [newUserDateSchedule, setNewUserDateSchedule] = useState([]);
+
+  const [prevSelectedDate, setPrevSelectedDate] = useState(0);
+  const [nextSelectedDate, setNextSelectedDate] = useState(0);
 
   /**클릭한 날짜와 그 날짜의 스케줄 */
   const todayDate = (date, idolDateSchedule, userDateSchedule) => {
+  
+
+  const todayDate = (date, idolDateSchedule, userDateSchedule) => {
+
     setNewIdolDateSchedule(idolDateSchedule);
     setNewUserDateSchedule(userDateSchedule);
     setSelectedDate(date.format("M월 D일 (ddd)"));
+  };
+
+  const prevDate = (date, idolDateSchedule) => {
+    console.log(date);
+    // console.log(idolDateSchedule);
+    setPrevIdolDateSchedule(idolDateSchedule);
+    setPrevSelectedDate(date.format("M월 D일 (ddd)"));
+  };
+
+  const nextDate = (date, idolDateSchedule) => {
+    console.log(date);
+    // console.log(idolDateSchedule);
+    setNextIdolDateSchedule(idolDateSchedule);
+    setNextSelectedDate(date.format("M월 D일 (ddd)"));
   };
 
   const setSidebarOpen = (isSidebar) => {
@@ -121,19 +152,34 @@ const CalendarData = () => {
     <div className={styles.calendarContainer}>
       <div className={styles.calendar}>
         <div className={styles.calendarWrap}>
+
+          <Calendar
+            todayDate={todayDate}
+            setSidebarOpen={setSidebarOpen}
+            prevDate={prevDate}
+            nextDate={nextDate}
+          />
+     
           <div className={styles.idolName}>
             {" "}
             <p>{idolName.idolNameKr}</p>
             {idolName.group ? <p>{idolName.group}</p> : null}
           </div>
-          <Calendar todayDate={todayDate} setSidebarOpen={setSidebarOpen} />
+        
           <Sidebar
             sidebar={sidebar}
             setSidebarClose={setSidebarClose}
             todayDate={todayDate}
             newIdolDateSchedule={newIdolDateSchedule}
             newUserDateSchedule={newUserDateSchedule}
+
             selectedDate={selectedDate}
+            prevSelectedDate={prevSelectedDate}
+            nextSelectedDate={nextSelectedDate}
+            newIdolDateSchedule={newIdolDateSchedule}
+            prevIdolDateSchedule={prevIdolDateSchedule}
+            nextIdolDateSchedule={nextIdolDateSchedule}
+            newUserDateSchedule={newUserDateSchedule}
           />
         </div>
         {Number(idolId) === userPick ? (

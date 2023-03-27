@@ -20,13 +20,21 @@ import {
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 
-const Calendar = ({ todayDate, setSidebarOpen }) => {
+const Calendar = ({ todayDate, setSidebarOpen, prevDate, nextDate }) => {
+
   /**아이돌아이디 */
+
   const { idolId } = useParams();
   const userPick = useSelector((state) => state.auth.authState.pick.idolPk);
 
   /**선택한 날 */
   const [selectedDay, setSelectedDay] = useState(moment());
+  const [prevsSelectedDay, setPrevsSelectedDay] = useState(
+    moment().subtract(1, "day")
+  );
+  const [nextsSelectedDay, setNextsSelectedDay] = useState(
+    moment().add(1, "day")
+  );
 
   /**현재 보여주는 달의 날짜들 */
   const [getMoment, setMoment] = useState(moment());
@@ -87,20 +95,52 @@ const Calendar = ({ todayDate, setSidebarOpen }) => {
   /**이번달 데이터와 클릭한 일자 데이터 */
   const [newIdolDateSchedule, setNewIdolDateSchedule] = useState([]);
 
+  const [prevIdolDateSchedule, setPrevIdolDateSchedule] = useState([]);
+  const [nextIdolDateSchedule, setNextIdolDateSchedule] = useState([]);
+
   const newSelectedDay = selectedDay.format("YYYY/MM/DD");
+
+  const prevSelectedDay = prevsSelectedDay.format("YYYY/MM/DD");
+  const nextSelectedDay = nextsSelectedDay.format("YYYY/MM/DD");
+
   useEffect(() => {
+    // fetchMonthData(getMoment, activeButtons, idolId).then((data) =>
+    //   setNewIdolSchedule(data)
+    // );
+    // fetchDayIdolSchedule(newSelectedDay, activeButtons, idolId).then((data) =>
+    //   setNewIdolDateSchedule(data)
+    // );
     fetchMonthData(getMoment, activeButtons, idolId).then((data) =>
       setNewIdolSchedule(data)
     );
     fetchDayIdolSchedule(newSelectedDay, activeButtons, idolId).then((data) =>
       setNewIdolDateSchedule(data)
     );
+    fetchDayIdolSchedule(prevSelectedDay, activeButtons, idolId).then((data) =>
+      setPrevIdolDateSchedule(data)
+    );
+    fetchDayIdolSchedule(nextSelectedDay, activeButtons, idolId).then((data) =>
+      setNextIdolDateSchedule(data)
+    );
   }, [activeButtons, idolId, getMoment, newSelectedDay]);
+  // console.log(newIdolDateSchedule);
+  // console.log(prevIdolDateSchedule);
+  // console.log(nextIdolDateSchedule);
 
   const idolDateSchedule = newIdolDateSchedule.idolDaySchdule;
   const userDateSchedule = newIdolDateSchedule.newUserData;
 
+  // const previousDay = selectedDay.clone().subtract(1, "day");
+  // const nextDay = selectedDay.clone().add(1, "day");
+
+  prevDate(prevsSelectedDay, prevIdolDateSchedule);
+  nextDate(nextsSelectedDay, nextIdolDateSchedule);
+
+
+  // handleClick 함수는 클릭된 버튼의 ID를 배열에 추가하거나 삭제
+  // map 함수에서 각 버튼의 className 속성은 activeButtons 배열에 현재 버튼의 ID가 포함되어 있는 경우에는 active 클래스를, 아닌 경우에는 inactive 클래스를 적용
   todayDate(selectedDay, idolDateSchedule, userDateSchedule);
+
 
   /**클릭한 버튼 toggle 함수 */
   const handleClick = (buttonPk) => {
@@ -145,6 +185,9 @@ const Calendar = ({ todayDate, setSidebarOpen }) => {
                     key={index}
                     onClick={() => {
                       setSelectedDay(days);
+                      setPrevsSelectedDay(moment(days).subtract(1, "days"));
+                      setNextsSelectedDay(moment(days).add(1, "days"));
+
                       setSidebarOpen(true);
                     }}
                     className={styles.today}
@@ -184,6 +227,9 @@ const Calendar = ({ todayDate, setSidebarOpen }) => {
                     key={index}
                     onClick={(e) => {
                       setSelectedDay(days);
+                      setPrevsSelectedDay(moment(days).subtract(1, "days"));
+                      setNextsSelectedDay(moment(days).add(1, "days"));
+
                       setSidebarOpen(true);
                     }}
                   >

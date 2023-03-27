@@ -5,6 +5,7 @@ import styles from "./UserSchedule.module.scss";
 
 const UserSchedule = ({ hideModalHandler, modifyScheduleModal }) => {
   const { register, handleSubmit } = useForm();
+
   const onSubmit = (data) => {
     let userFormData;
     if (modifyScheduleModal) {

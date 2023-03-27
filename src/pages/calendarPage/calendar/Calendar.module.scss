@@ -60,6 +60,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 376px) {
+    width: 12vw;
+  }
 }
 .icons {
   margin-bottom: 5px;
@@ -365,7 +368,6 @@
 // @media (max-width: 376px) {
 // }
 
-    td {
-      cursor: pointer;
-    }
-  
+td {
+  cursor: pointer;
+}
