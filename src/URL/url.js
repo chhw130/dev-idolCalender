@@ -4,7 +4,6 @@ import { getCookie } from "../cookie/cookie";
 // export const BASE_URL = "http://54.180.31.174:8000/api/v1/";
 export const BASE_URL = "http://127.0.0.1:8000/api/v1/";
 
-
 /**사진을 업로드 할 url 가져오는 함수 */
 export const getUploadUrl = async (img) => {
   let resData = "";

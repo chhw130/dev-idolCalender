@@ -51,15 +51,11 @@ const SidebarNav = styled.nav`
 const Sidebar = ({
   sidebar,
   setSidebarClose,
-
   todayDate,
 
   // 날짜
 
   newIdolDateSchedule,
-  newUserDateSchedule,
-
-
   newUserDateSchedule,
 
   selectedDate,
@@ -74,12 +70,10 @@ const Sidebar = ({
   const outside = useRef();
   const [userScheduleInput, setUserScheduleInput] = useState(false);
   const [modifyScheduleModal, setModifyScheduleModal] = useState();
-
   // 사이드바가 닫혔다가 다시 클릭되면 스크롤이 상단으로 이동
   const scrollToTop = () => {
     outside.current.scrollTo(0, 0);
   };
-
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClose);
@@ -120,7 +114,7 @@ const Sidebar = ({
   /**유저일정 수정 함수 */
   const modifyUserSchedule = async (e) => {
     const userSchedulePk = e.target.value;
-
+    console.log(userSchedulePk);
     setUserScheduleInput(true);
     setModifyScheduleModal(userSchedulePk);
   };
@@ -174,14 +168,12 @@ const Sidebar = ({
               스케줄을 놓치지 마세요
             </h3>
             <ul className={styles.todaySchedule_List}>
-
               {(displayedDay === "prev"
                 ? prevIdolDateSchedule
                 : displayedDay === "next"
                 ? nextIdolDateSchedule
                 : newIdolDateSchedule
               )?.map((item) => {
-
                 const scheduleIcon =
                   item.ScheduleType.type === "broadcast" ? (
                     <FontAwesomeIcon

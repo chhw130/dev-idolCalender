@@ -37,7 +37,6 @@ const CalendarData = () => {
   // const { isLoding: schedulesLoding, data: schedulesData } = useQuery(
   //   "schedules",
   // );
-
   useEffect(() => {
     axiosIdolSchedule(idolId).then((res) => {
       setIdolName({
@@ -97,7 +96,6 @@ const CalendarData = () => {
 
   /**사이드바 */
   const [sidebar, setSidebar] = useState(false);
-
   /**아이돌 day데이터 */
   const [newIdolDateSchedule, setNewIdolDateSchedule] = useState([]);
 
@@ -112,12 +110,11 @@ const CalendarData = () => {
 
   /**클릭한 날짜와 그 날짜의 스케줄 */
   const todayDate = (date, idolDateSchedule, userDateSchedule) => {
-  
-
-  const todayDate = (date, idolDateSchedule, userDateSchedule) => {
-
+    console.log(date);
+    // console.log(idolDateSchedule);
     setNewIdolDateSchedule(idolDateSchedule);
     setNewUserDateSchedule(userDateSchedule);
+    console.log(userDateSchedule);
     setSelectedDate(date.format("M월 D일 (ddd)"));
   };
 
@@ -152,26 +149,16 @@ const CalendarData = () => {
     <div className={styles.calendarContainer}>
       <div className={styles.calendar}>
         <div className={styles.calendarWrap}>
-
           <Calendar
             todayDate={todayDate}
             setSidebarOpen={setSidebarOpen}
             prevDate={prevDate}
             nextDate={nextDate}
           />
-     
-          <div className={styles.idolName}>
-            {" "}
-            <p>{idolName.idolNameKr}</p>
-            {idolName.group ? <p>{idolName.group}</p> : null}
-          </div>
-        
           <Sidebar
             sidebar={sidebar}
             setSidebarClose={setSidebarClose}
-            todayDate={todayDate}
-            newIdolDateSchedule={newIdolDateSchedule}
-            newUserDateSchedule={newUserDateSchedule}
+            // todayDate={todayDate}
 
             selectedDate={selectedDate}
             prevSelectedDate={prevSelectedDate}
@@ -214,7 +201,7 @@ const CalendarData = () => {
                 event: faCalendarCheck,
                 release: faCompactDisc,
                 congrats: faGift,
-                store: faStore,
+                buy: faStore,
               }[scheduleType];
 
               const scheduleIconColor = {
@@ -222,7 +209,7 @@ const CalendarData = () => {
                 event: "#537fe7",
                 release: "#f16767",
                 congrats: "#e7b10a",
-                store: "#609966",
+                buy: "#609966",
               }[scheduleType];
 
               return day.ScheduleTitle ? (
