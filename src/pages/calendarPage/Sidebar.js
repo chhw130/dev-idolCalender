@@ -14,10 +14,10 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import UserSchedule from "../myschedule/UserSchedule";
-import Modal from "../../../UI/Modal";
+import UserSchedule from "./myschedule/UserSchedule";
+import Modal from "../../UI/Modal";
 import axios from "axios";
-import { BASE_URL } from "../../../URL/url";
+import { BASE_URL } from "../../URL/url";
 
 const SidebarNav = styled.nav`
   background-color: #5b5be8;
@@ -98,11 +98,17 @@ const Sidebar = ({
 
   const changeDate = (direction) => {
     if (direction === "prev") {
-      setDisplayedDay("prev");
+      if (displayedDay === "today") {
+        setDisplayedDay("prev");
+      } else if (displayedDay === "next") {
+        setDisplayedDay("today");
+      }
     } else if (direction === "next") {
-      setDisplayedDay("next");
-    } else {
-      setDisplayedDay("today");
+      if (displayedDay === "today") {
+        setDisplayedDay("next");
+      } else if (displayedDay === "prev") {
+        setDisplayedDay("today");
+      }
     }
   };
 

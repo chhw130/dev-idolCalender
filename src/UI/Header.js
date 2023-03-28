@@ -33,8 +33,8 @@ const Headar = () => {
       .post(`${BASE_URL}users/logout/`, "", {
         withCredentials: true,
       })
-      .then((res) => console.log(res))
-      .then((data) => console.log(data));
+      .then((res) => res)
+      .then((data) => data);
     dispatch(authActions.logOut());
     removeCookie("isLogin");
     window.location.reload();

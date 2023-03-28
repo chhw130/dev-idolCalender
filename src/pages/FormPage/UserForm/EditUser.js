@@ -141,6 +141,7 @@ const EditUser = () => {
             <div className={styles.absoluteInform}>{userData.nickname}</div>
           </div>
 
+          {/**보류,, */}
           {/* <div className={styles.typeDiv}> */}
           {/* <label>최애 변경</label>
             <input type="checkbox" name="onoff-switch" />

@@ -70,5 +70,3 @@ const Confirm = (props) => {
 };
 
 export default Confirm;
-
-// const idolSchedule = {};

@@ -89,7 +89,7 @@
 }
 .nextSchedule_Content {
   font-family: Cafe24Ssurround;
-  font-size: 1.7rem;
+  font-size: 1.8rem;
 }
 .nextSchedule_ContentList {
   //font-size: 20px;
@@ -109,16 +109,25 @@
   //border: 1px solid black;
 }
 .nextScheduleItem {
+  min-width: 300px;
   box-sizing: border-box;
   background-color: #efeff1;
   //border-radius: 20px;
-  padding: 15px 25px;
+  width: 35vw;
+  padding: 20px 25px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
   span {
     font-family: NanumSquareRound;
-    font-size: 1rem;
+    font-size: 1.2rem;
+  }
+  @media (max-width: 376px) {
+    width: 70vw;
+    span {
+      font-size: 1rem;
+    }
   }
 }
 .nextscheduleIcon {

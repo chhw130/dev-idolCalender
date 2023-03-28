@@ -100,12 +100,6 @@ const Calendar = ({ todayDate, setSidebarOpen, prevDate, nextDate }) => {
   const nextSelectedDay = nextsSelectedDay.format("YYYY/MM/DD");
 
   useEffect(() => {
-    // fetchMonthData(getMoment, activeButtons, idolId).then((data) =>
-    //   setNewIdolSchedule(data)
-    // );
-    // fetchDayIdolSchedule(newSelectedDay, activeButtons, idolId).then((data) =>
-    //   setNewIdolDateSchedule(data)
-    // );
     fetchMonthData(getMoment, activeButtons, idolId).then((data) =>
       setNewIdolSchedule(data)
     );
@@ -118,7 +112,14 @@ const Calendar = ({ todayDate, setSidebarOpen, prevDate, nextDate }) => {
     fetchDayIdolSchedule(nextSelectedDay, activeButtons, idolId).then((data) =>
       setNextIdolDateSchedule(data)
     );
-  }, [activeButtons, idolId, getMoment, newSelectedDay]);
+  }, [
+    activeButtons,
+    idolId,
+    getMoment,
+    newSelectedDay,
+    nextSelectedDay,
+    prevSelectedDay,
+  ]);
 
   const idolDateSchedule = newIdolDateSchedule.idolDaySchdule;
   const userDateSchedule = newIdolDateSchedule.newUserData;
@@ -347,7 +348,7 @@ function ShowEvent({ days, newIdolSchedule }) {
               </div>
             );
           }
-          return;
+          return true;
         })}
       </div>
     </>

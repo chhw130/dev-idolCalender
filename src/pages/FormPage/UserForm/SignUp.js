@@ -55,7 +55,6 @@ const SignUp = () => {
     const date = new Date().getFullYear();
     const age = date - year + 1;
 
-    /**백에 보내줄 데이터 */
     const signUpInform = {
       email: data.email,
       password: data.password,
@@ -65,16 +64,14 @@ const SignUp = () => {
       pick: Number(selectValue),
     };
 
-    /**백에 데이터 POST하기 */
     await axios
       .post(`${BASE_URL}users/`, signUpInform, {
         withCredentials: true,
       })
-      /**회원가입 성공 */
       .then((data) => {
         setSignUpModal(true);
       })
-      /**회원가입 실패 */
+
       .catch((data) => {
         setIsError(data.response.data);
       });

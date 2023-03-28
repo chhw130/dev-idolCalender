@@ -1,4 +1,3 @@
-import Modal from "./UI/Modal";
 import EditUser from "./pages/FormPage/UserForm/EditUser";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -9,10 +8,9 @@ import ScrollToTop from "./UI/ScrollUP";
 import { getCookie } from "./cookie/cookie";
 import AdminPage from "./pages/adminPage/AdminPage";
 import Layout from "./UI/Layout";
-import CalendarPage from "./pages/calendarPage/hj_calendarPage/CalendarPage";
+import CalendarPage from "./pages/calendarPage/CalendarPage";
 import axios from "axios";
 import ReportTable from "./pages/adminPage/table/ReportTable";
-import ReportSchedule from "./pages/FormPage/IdolForm/ReportSchedule";
 import LogIn from "./pages/FormPage/UserForm/Login";
 import SignUp from "./pages/FormPage/UserForm/SignUp";
 import { fetchingIdolData } from "./store/idolData-action";
@@ -26,8 +24,6 @@ function App() {
   /**전역에 토큰 허용 */
   axios.defaults.xsrfCookieName = "csrftoken";
   axios.defaults.xsrfHeaderName = "X-CSRFToken";
-
-  /**초기 로그인 데이터는 없는걸로 표시 */
 
   /**저장된 토큰을 가져와서 redux저장소에 넣어주기 */
   useEffect(() => {
@@ -99,21 +95,13 @@ function App() {
           element={!isLogin ? <Navigate to="/" /> : <EditUser />}
         />
 
+        {/**아이돌 캘린더 페이지 */}
         <Route
           path=":idolId/calendar"
           element={
             <Layout>
               <CalendarPage />
             </Layout>
-          }
-        />
-
-        <Route
-          path="/report"
-          element={
-            <Modal>
-              <ReportSchedule />
-            </Modal>
           }
         />
 

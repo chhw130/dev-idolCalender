@@ -53,8 +53,7 @@ export const postProfileImg = async (profileImg) => {
     .catch((res) => res);
 };
 
-/**특정 idol에 대한 스케줄 month데이터 불러오기 */
-
+/**로그인 여부에 따라 데이터 받아옴 */
 const loginUserData =
   typeof getCookie("isLogin") !== "undefined"
     ? getCookie("isLogin").pick
@@ -64,6 +63,7 @@ const loginAdminData =
     ? getCookie("isLogin").is_admin
     : false;
 
+/**특정 idol에 대한 스케줄 month데이터 불러오기 */
 export const fetchMonthData = async (getMoment, activeButtons, idolId) => {
   const date = getMoment.format("YYYY/MM");
 

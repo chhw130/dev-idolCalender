@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./CalendarPage.module.scss";
-import Sidebar from "../hj_sideBar/Sidebar";
+import Sidebar from "./Sidebar";
 import { useQuery } from "react-query";
-import { axiosIdolSchedule, axiosSchedule } from "../../../api";
-import Calendar from "../calendar/Calendar";
+import { axiosIdolSchedule, axiosSchedule } from "../../api";
+import Calendar from "./calendar/Calendar";
 
 import {
   faBroadcastTower,
@@ -15,8 +15,8 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
-import Modal from "../../../UI/Modal";
-import ReportSchedule from "../../FormPage/IdolForm/ReportSchedule";
+import Modal from "../../UI/Modal";
+import ReportSchedule from "../FormPage/IdolForm/ReportSchedule";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CalendarData = () => {
@@ -34,9 +34,6 @@ const CalendarData = () => {
   );
 
   // 스케줄 데이터
-  // const { isLoding: schedulesLoding, data: schedulesData } = useQuery(
-  //   "schedules",
-  // );
   useEffect(() => {
     axiosIdolSchedule(idolId).then((res) => {
       setIdolName({
@@ -110,24 +107,17 @@ const CalendarData = () => {
 
   /**클릭한 날짜와 그 날짜의 스케줄 */
   const todayDate = (date, idolDateSchedule, userDateSchedule) => {
-    console.log(date);
-    // console.log(idolDateSchedule);
     setNewIdolDateSchedule(idolDateSchedule);
     setNewUserDateSchedule(userDateSchedule);
-    console.log(userDateSchedule);
     setSelectedDate(date.format("M월 D일 (ddd)"));
   };
 
   const prevDate = (date, idolDateSchedule) => {
-    console.log(date);
-    // console.log(idolDateSchedule);
     setPrevIdolDateSchedule(idolDateSchedule);
     setPrevSelectedDate(date.format("M월 D일 (ddd)"));
   };
 
   const nextDate = (date, idolDateSchedule) => {
-    console.log(date);
-    // console.log(idolDateSchedule);
     setNextIdolDateSchedule(idolDateSchedule);
     setNextSelectedDate(date.format("M월 D일 (ddd)"));
   };
@@ -149,6 +139,10 @@ const CalendarData = () => {
     <div className={styles.calendarContainer}>
       <div className={styles.calendar}>
         <div className={styles.calendarWrap}>
+          <div className={styles.idolName}>
+            <p>{idolName.idolNameKr}</p>
+            {idolName.group ? <p>{idolName.group}</p> : null}
+          </div>
           <Calendar
             todayDate={todayDate}
             setSidebarOpen={setSidebarOpen}
@@ -158,8 +152,6 @@ const CalendarData = () => {
           <Sidebar
             sidebar={sidebar}
             setSidebarClose={setSidebarClose}
-            // todayDate={todayDate}
-
             selectedDate={selectedDate}
             prevSelectedDate={prevSelectedDate}
             nextSelectedDate={nextSelectedDate}

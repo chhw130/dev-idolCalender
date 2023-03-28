@@ -71,7 +71,7 @@ const Home = () => {
         clearInterval(interval);
       }
     };
-  }, [isHovered]);
+  }, [isHovered, slideBanner]);
 
   return (
     <div className={styles.home}>

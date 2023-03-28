@@ -30,7 +30,6 @@ const LogIn = () => {
       })
       .then((response) => {
         setIsValid(false);
-        /**로그인 처리 */
         const responseData = response.data;
         setCookie("isLogin", responseData);
         navigate("/");
